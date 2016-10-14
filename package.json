@@ -10,8 +10,8 @@
   "author": "Irek Róg & Filip Białek",
   "license": "MIT",
   "scripts": {
-     "start": "node_modules/.bin/webpack-dev-server --progress",
-      "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
+    "start": "node_modules/.bin/webpack-dev-server --progress",
+    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
