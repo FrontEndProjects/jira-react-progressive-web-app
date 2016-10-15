@@ -1,12 +1,16 @@
 var webpack = require('webpack');
 var path = require('path');
 
+
 var config = {
   devtool: 'eval-source-map',
   entry: path.resolve(__dirname, 'app/App.js'),
   output: {
     path: path.resolve(__dirname, './public'),
     filename: 'bundle.js'
+  },
+  eslint: {
+    configFile: '.eslintrc.json'
   },
   module: {
     loaders: [
@@ -22,6 +26,11 @@ var config = {
         test: /\.scss$/,
         exclude: /node_modules/,
         loaders: ['style', 'css', 'sass']
+      },
+      {
+        test: /\.js$/, 
+        loader: "eslint-loader", 
+        exclude: /node_modules/
       }
     ]
   },
