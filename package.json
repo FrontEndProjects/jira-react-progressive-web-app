@@ -10,8 +10,8 @@
   "author": "Irek Róg & Filip Białek",
   "license": "MIT",
   "scripts": {
-     "start": "node_modules/.bin/webpack-dev-server --progress",
-      "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
+    "start": "node_modules/.bin/webpack-dev-server --progress",
+    "build": "NODE_ENV=production node_modules/.bin/webpack -p --progress --colors"
   },
   "devDependencies": {
     "babel-core": "^6.17.0",
@@ -21,13 +21,14 @@
     "css-loader": "^0.25.0",
     "node-sass": "^3.10.1",
     "path": "^0.12.7",
+    "redux-devtools": "^3.3.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.16.2",
-    "redux-devtools": "^3.3.1"
+    "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
+    "immutable": "^3.8.1",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
     "react-redux": "^4.4.5",
