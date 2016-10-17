@@ -26,19 +26,15 @@
     "eslint-plugin-react": "^6.4.1",
     "eslint-plugin-standard": "^2.0.1",
     "node-sass": "^3.10.1",
-    "redux-devtools": "^3.3.1",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.2"
   },
   "dependencies": {
-    "immutable": "^3.8.1",
     "material-ui": "^0.16.0",
     "react": "^15.3.2",
     "react-dom": "^15.3.2",
-    "react-redux": "^4.4.5",
-    "react-tap-event-plugin": "^1.0.0",
-    "redux": "^3.6.0"
+    "react-tap-event-plugin": "^1.0.0"
   }
 }
