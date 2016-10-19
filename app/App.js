@@ -17,7 +17,8 @@ class App extends Component {
       isLogged: false,
       data: [],
       login: '',
-      password: ''
+      password: '',
+      errorText: ''
     };
 
     this.handleLoginInput = this.handleLoginInput.bind(this);
@@ -55,14 +56,19 @@ class App extends Component {
     })
     .then(response => {
       console.log(response);
-      console.log(response.data.issues[0].fields.assignee.displayName);
       this.setState({
         isLogged: true,
         data: response.data.issues
       });
       console.log(this.state.data);
     })
-    .catch(error => console.log(error));
+    .catch(error => {
+      console.log(error.response);
+      let status = error.response.status === 401 ? 'Incorrect data' : '';
+      this.setState({
+        errorText: `${status}`
+      });
+    });
   }
 
   render () {
@@ -71,6 +77,7 @@ class App extends Component {
         <MuiThemeProvider>
           <ContentContainer
             issues={this.state.data}
+            username={this.state.login}
           />
         </MuiThemeProvider>
      );
@@ -80,7 +87,8 @@ class App extends Component {
           <LoginContainer
             handleLoginButton={this.handleLoginButton}
             handleLoginInput={this.handleLoginInput}
-            handlePasswordInput ={this.handlePasswordInput}
+            handlePasswordInput={this.handlePasswordInput}
+            errorInfo={this.state.errorText}
           />
         </MuiThemeProvider>
       );

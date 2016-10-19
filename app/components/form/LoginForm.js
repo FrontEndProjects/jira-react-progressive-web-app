@@ -13,12 +13,14 @@ class LoginForm extends Component {
           hintText="Enter your login"
           fullWidth={true}
           onChange={this.props.handleLoginInput}
+          errorText={this.props.error}
         />
         <TextField
           hintText="Enter your password"
           type="password"
           fullWidth={true}
           onChange={this.props.handlePasswordInput}
+          errorText={this.props.error}
         />
         <TextField
           hintText="Url to your jira site"

@@ -44,7 +44,7 @@ class ContentContainer extends Component {
               <MenuItem primaryText="Sign out" />
             </Menu>
           </Drawer>
-          <AppBar title='Logged' onLeftIconButtonTouchTap={this.openDrawer} />
+          <AppBar title={'Hi ' + this.props.username} onLeftIconButtonTouchTap={this.openDrawer} />
           {Cards}
         </div>
      );

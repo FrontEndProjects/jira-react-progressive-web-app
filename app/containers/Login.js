@@ -12,6 +12,7 @@ class LoginContainer extends Component {
             handleLoginButton={this.props.handleLoginButton}
             handleLoginInput={this.props.handleLoginInput}
             handlePasswordInput ={this.props.handlePasswordInput}
+            error={this.props.errorInfo}
            />
         </div>
      );
