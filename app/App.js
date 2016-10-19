@@ -2,15 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import injectTapEventPlugin from 'react-tap-event-plugin';
+import axios from 'axios';
 
-import Card from './components/Card';
-import AppBar from 'material-ui/AppBar';
-import Drawer from 'material-ui/Drawer';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-
-import LoginForm from './components/form/LoginForm.js';
+import LoginContainer from './containers/Login.js';
+import ContentContainer from './containers/Content.js';
 
 injectTapEventPlugin();
 
@@ -19,46 +14,69 @@ class App extends Component {
   constructor (props) {
     super(props);
     this.state = {
-      open: false,
-      isLogged: false
+      isLogged: false,
+      login: '',
+      password: ''
     };
 
-    this.openDrawer = this.openDrawer.bind(this);
+    this.handleLoginInput = this.handleLoginInput.bind(this);
+    this.handlePasswordInput = this.handlePasswordInput.bind(this);
+    this.handleLoginButton = this.handleLoginButton.bind(this);
   }
 
-  openDrawer () {
+  handleLoginInput (e) {
     this.setState({
-      open: !this.state.open
+      login: e.target.value
     });
+  }
+
+  handlePasswordInput (e) {
+    this.setState({
+      password: e.target.value
+    });
+  }
+
+  handleLoginButton () {
+    let login = this.state.login;
+    let password = this.state.password;
+
+    return axios({
+      url: `https://jira.nitro-digital.com/rest/api/2/search?jql=status%20in%20(Open%2C%20%22In%20Progress%22)%20AND%20assignee%20in%20(${login})`,
+      method: 'get',
+      responseType: 'json',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      auth: {
+        username: `${login}`,
+        password: `${password}`
+      }
+    })
+    .then(response => {
+      console.log(response);
+      console.log(response.data.issues[0].fields.assignee.displayName);
+      this.setState({
+        isLogged: true
+      });
+    })
+    .catch(error => console.log(error));
   }
 
   render () {
     if (this.state.isLogged) {
       return (
         <MuiThemeProvider>
-          <div>
-            <Drawer open={this.state.open} docked={false} onRequestChange={(open) => this.setState({open})}>
-              <Menu desktop={true}>
-                <MenuItem primaryText="Hi User" />
-                <Divider />
-                <MenuItem primaryText="Settings" />
-                <MenuItem primaryText="Help" />
-                <Divider />
-                <MenuItem primaryText="Sign out" />
-              </Menu>
-            </Drawer>
-            <AppBar title='Logged' onLeftIconButtonTouchTap={this.openDrawer} />
-            <Card />
-          </div>
+          <ContentContainer />
         </MuiThemeProvider>
      );
     } else {
       return (
         <MuiThemeProvider>
-          <div>
-            <AppBar title='Log in to Jira' />
-            <LoginForm />
-          </div>
+          <LoginContainer
+            handleLoginButton={this.handleLoginButton}
+            handleLoginInput={this.handleLoginInput}
+            handlePasswordInput ={this.handlePasswordInput}
+          />
         </MuiThemeProvider>
       );
     }
