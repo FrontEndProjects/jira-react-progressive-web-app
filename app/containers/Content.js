@@ -24,6 +24,11 @@ class ContentContainer extends Component {
   }
 
   render () {
+    let issues = this.props.issues;
+    let Cards = issues.map((elem, idx) => {
+      return <Card title={elem.fields.summary} key={idx} />;
+    });
+
     return (
         <div>
           <Drawer
@@ -40,7 +45,7 @@ class ContentContainer extends Component {
             </Menu>
           </Drawer>
           <AppBar title='Logged' onLeftIconButtonTouchTap={this.openDrawer} />
-          <Card />
+          {Cards}
         </div>
      );
   }

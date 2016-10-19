@@ -15,6 +15,7 @@ class App extends Component {
     super(props);
     this.state = {
       isLogged: false,
+      data: [],
       login: '',
       password: ''
     };
@@ -56,8 +57,10 @@ class App extends Component {
       console.log(response);
       console.log(response.data.issues[0].fields.assignee.displayName);
       this.setState({
-        isLogged: true
+        isLogged: true,
+        data: response.data.issues
       });
+      console.log(this.state.data);
     })
     .catch(error => console.log(error));
   }
@@ -66,7 +69,9 @@ class App extends Component {
     if (this.state.isLogged) {
       return (
         <MuiThemeProvider>
-          <ContentContainer />
+          <ContentContainer
+            issues={this.state.data}
+          />
         </MuiThemeProvider>
      );
     } else {

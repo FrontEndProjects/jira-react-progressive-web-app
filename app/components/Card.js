@@ -5,8 +5,7 @@ class Card extends Component {
 
   render () {
     return (
-      <ListItem
-        primaryText='Drupal audit seo check'>
+      <ListItem primaryText={this.props.title} >
       </ListItem>
      );
   }
