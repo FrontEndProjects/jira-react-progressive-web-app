@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 
+import axios from 'axios';
+
 import './login-form.scss';
 
 class LoginForm extends Component {
@@ -18,8 +20,29 @@ class LoginForm extends Component {
   }
 
   handleLoginButton () {
-    console.log('Username: ', this.state.login);
-    console.log('Password: ', this.state.password);
+    let login = this.state.login;
+    let password = this.state.password;
+
+    console.log('Username: ', login);
+    console.log('Password: ', password);
+
+    return axios({
+      url: `https://jira.nitro-digital.com/rest/api/2/search?jql=status%20in%20(Open%2C%20%22In%20Progress%22)%20AND%20assignee%20in%20(${login})`,
+      method: 'get',
+      responseType: 'json',
+      headers: {
+        'Access-Control-Allow-Origin': '*'
+      },
+      auth: {
+        username: `${login}`,
+        password: `${password}`
+      }
+    })
+    .then(response => {
+      console.log(response);
+      console.log(response.data.issues[0].fields.assignee.displayName);
+    })
+    .catch(error => console.log(error));
   }
 
   handleLoginInput (e) {
