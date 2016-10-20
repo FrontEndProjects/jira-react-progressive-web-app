@@ -1,14 +1,19 @@
 import React, { Component } from 'react';
-import { ListItem } from 'material-ui/List';
+import { Card, CardHeader } from 'material-ui/Card';
 
-class Card extends Component {
+class Task extends Component {
 
   render () {
     return (
-      <ListItem primaryText={this.props.title} >
-      </ListItem>
+      <Card>
+        <CardHeader
+          title={this.props.title}
+          subtitle={this.props.link}
+          avatar={this.props.avatar}
+        />
+      </Card>
      );
   }
 }
 
-export default Card;
+export default Task;

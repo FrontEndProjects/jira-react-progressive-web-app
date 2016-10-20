@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Card from '../components/Card';
+import Task from '../components/Card';
 import Drawer from 'material-ui/Drawer';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -26,7 +26,12 @@ class ContentContainer extends Component {
   render () {
     let issues = this.props.issues;
     let Cards = issues.map((elem, idx) => {
-      return <Card title={elem.fields.summary} key={idx} />;
+      return <Task
+        title={elem.fields.summary}
+        avatar={elem.fields.creator.avatarUrls['32x32']}
+        link={elem.self}
+        key={idx}
+       />;
     });
 
     return (
