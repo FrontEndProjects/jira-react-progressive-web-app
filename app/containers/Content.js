@@ -29,7 +29,7 @@ class ContentContainer extends Component {
       return <Task
         title={elem.fields.summary}
         avatar={elem.fields.creator.avatarUrls['32x32']}
-        link={elem.self}
+        link={elem.key}
         key={idx}
        />;
     });
