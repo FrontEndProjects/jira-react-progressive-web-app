@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Task from '../components/Card';
+import TaskHeader from '../components/tasksHeader/TaskHeader';
+import Task from '../components/task/Task';
 import Drawer from 'material-ui/Drawer';
 import Menu from 'material-ui/Menu';
 import MenuItem from 'material-ui/MenuItem';
@@ -50,6 +51,7 @@ class ContentContainer extends Component {
             </Menu>
           </Drawer>
           <AppBar title={'Hi ' + this.props.username} onLeftIconButtonTouchTap={this.openDrawer} />
+          <TaskHeader />
           {Cards}
         </div>
      );
