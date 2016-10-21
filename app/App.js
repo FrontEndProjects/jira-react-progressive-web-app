@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import LinearProgress from 'material-ui/LinearProgress';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import axios from 'axios';
 
@@ -18,7 +19,8 @@ class App extends Component {
       data: [],
       login: '',
       password: '',
-      errorText: ''
+      errorText: '',
+      progress: false
     };
 
     this.handleLoginInput = this.handleLoginInput.bind(this);
@@ -39,6 +41,10 @@ class App extends Component {
   }
 
   handleLoginButton () {
+    this.setState({
+      progress: true
+    });
+
     let login = this.state.login;
     let password = this.state.password;
 
@@ -57,16 +63,18 @@ class App extends Component {
     .then(response => {
       console.log(response);
       this.setState({
+        progress: false,
         isLogged: true,
         data: response.data.issues
       });
       console.log(this.state.data);
     })
     .catch(error => {
-      console.log(error.response);
+      console.log(error);
       let status = error.response.status === 401 ? 'Incorrect data' : '';
       this.setState({
-        errorText: `${status}`
+        errorText: `${status}`,
+        progress: false
       });
     });
   }
@@ -84,17 +92,33 @@ class App extends Component {
     } else {
       return (
         <MuiThemeProvider>
+        <div>
+          <LinearProgress
+            mode="indeterminate"
+            style={this.state.progress ? styles.showProgress : styles.hideProgress}
+            color="#FF4081"
+          />
           <LoginContainer
             handleLoginButton={this.handleLoginButton}
             handleLoginInput={this.handleLoginInput}
             handlePasswordInput={this.handlePasswordInput}
             errorInfo={this.state.errorText}
           />
+          </div>
         </MuiThemeProvider>
       );
     }
   }
 }
+
+const styles = {
+  showProgress: {
+    display: 'block'
+  },
+  hideProgress: {
+    display: 'none'
+  }
+};
 
 render(<App />, document.getElementById('app'));
 

@@ -8,11 +8,11 @@ class TaskHeader extends Component {
     return (
       <Toolbar>
         <ToolbarGroup>
-          <ToolbarTitle text="Your open jira tasks:" />
+          <ToolbarTitle text={'Your open jira tasks: ' + this.props.issuesNumber} />
           <ToolbarSeparator />
         </ToolbarGroup>
         <ToolbarGroup>
-          <RaisedButton label="log your hours!" primary={true} />
+          <RaisedButton label='log your hours!' primary={true} />
         </ToolbarGroup>
       </Toolbar>
      );
