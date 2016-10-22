@@ -8,7 +8,12 @@ class Task extends Component {
   render () {
     let href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
     return (
-      <Card>
+      <Card
+        style={{
+          margin: '1em auto',
+          width: '90%'
+        }}
+      >
         <CardHeader
           title={this.props.title}
           subtitle={this.props.link}
@@ -18,7 +23,7 @@ class Task extends Component {
         >
         </CardHeader>
         <CardActions style={styles.cardActions}>
-          <RaisedButton label="Go to Jira project" href={href} style={styles.raisedButton} />
+          <RaisedButton label="Go to Jira project" href={href} target="_blank" style={styles.raisedButton} />
         </CardActions>
         <CardText expandable={true} style={styles.cardText}>
           <Paper zDepth={1} style={styles.paper}>
