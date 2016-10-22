@@ -1,16 +1,13 @@
 import React, { Component } from 'react';
-import { render } from 'react-dom';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import LinearProgress from 'material-ui/LinearProgress';
-import injectTapEventPlugin from 'react-tap-event-plugin';
 import axios from 'axios';
 
-import LoginContainer from './containers/Login.js';
-import ContentContainer from './containers/Content.js';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import LinearProgress from 'material-ui/LinearProgress';
 
-injectTapEventPlugin();
+import LoginContainer from './Login.js';
+import ContentContainer from './Content.js';
 
-class App extends Component {
+class MainContainer extends Component {
 
   constructor (props) {
     super(props);
@@ -120,5 +117,4 @@ const styles = {
   }
 };
 
-render(<App />, document.getElementById('app'));
-
+export default MainContainer;

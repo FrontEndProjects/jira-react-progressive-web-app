@@ -18,7 +18,7 @@ class Task extends Component {
           title={this.props.title}
           subtitle={this.props.link}
           avatar={this.props.avatar}
-          actAsExpander={true}
+          actAsExpander={false}
           showExpandableButton={true}
         >
         </CardHeader>

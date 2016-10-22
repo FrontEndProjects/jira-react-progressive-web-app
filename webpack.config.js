@@ -1,14 +1,22 @@
 var webpack = require('webpack');
 var path = require('path');
 
-
 var config = {
-  devtool: 'eval-source-map',
-  entry: path.resolve(__dirname, 'app/App.js'),
+  devtool: 'eval',
+  entry: [
+    'react-hot-loader/patch',
+    'webpack-dev-server/client?http://localhost:8080',
+    'webpack/hot/only-dev-server',
+    './app/index'
+  ],
   output: {
-    path: path.resolve(__dirname, './public'),
-    filename: 'bundle.js'
+    path: path.join(__dirname, 'public'),
+    filename: 'bundle.js',
+    publicPath: 'http://localhost:8080/'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   eslint: {
     configFile: '.eslintrc.json'
   },
@@ -17,10 +25,7 @@ var config = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loader: 'babel',
-        query: {
-          presets: ['es2015', 'react']
-        }
+        loaders: ['babel-loader']
       },
       {
         test: /\.scss$/,
@@ -28,20 +33,11 @@ var config = {
         loaders: ['style', 'css', 'sass']
       },
       {
-        test: /\.js$/, 
-        loader: "eslint-loader", 
+        test: /\.js$/,
+        loader: 'eslint-loader',
         exclude: /node_modules/
       }
     ]
-  },
-  node: {
-    __dirname: true,
-    fs: 'empty'
-  },
-  devServer: {
-    contentBase: path.resolve(__dirname, './public/'),
-    colors: true,
-    inline: true
   }
 };
 
