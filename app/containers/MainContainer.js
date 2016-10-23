@@ -4,8 +4,8 @@ import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress';
 
-import LoginContainer from './Login';
-import ContentContainer from './Content';
+import LoginContainer from './LoginContainer';
+import ContentContainer from './ContentContainer';
 
 export default class MainContainer extends Component {
 
