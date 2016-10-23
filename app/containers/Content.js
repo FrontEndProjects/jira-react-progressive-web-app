@@ -1,30 +1,11 @@
 import React, { Component } from 'react';
-import TaskHeader from '../components/tasksHeader/TaskHeader';
+import TaskHeader from '../components/taskHeader/TaskHeader';
 import Task from '../components/task/Task';
-import Drawer from 'material-ui/Drawer';
-import Menu from 'material-ui/Menu';
-import MenuItem from 'material-ui/MenuItem';
-import Divider from 'material-ui/Divider';
-import AppBar from 'material-ui/AppBar';
+import Bar from '../components/bar/Bar';
 
 import dateFormat from 'dateformat';
 
-class ContentContainer extends Component {
-
-  constructor (props) {
-    super(props);
-    this.state = {
-      open: false
-    };
-
-    this.openDrawer = this.openDrawer.bind(this);
-  }
-
-  openDrawer () {
-    this.setState({
-      open: !this.state.open
-    });
-  }
+export default class ContentContainer extends Component {
 
   render () {
     let issues = this.props.issues;
@@ -45,25 +26,10 @@ class ContentContainer extends Component {
 
     return (
         <div>
-          <Drawer
-            open={this.state.open}
-            docked={false}
-            onRequestChange={(open) => this.setState({open})} >
-            <Menu desktop={true}>
-              <MenuItem primaryText={'Hi ' + this.props.username} />
-              <Divider />
-              <MenuItem primaryText="Settings" />
-              <MenuItem primaryText="Help" />
-              <Divider />
-              <MenuItem primaryText="Sign out" />
-            </Menu>
-          </Drawer>
-          <AppBar title={this.props.username} onLeftIconButtonTouchTap={this.openDrawer} />
+          <Bar user={this.props.username} />
           <TaskHeader issuesNumber={issuesNumber} />
           {Cards}
         </div>
      );
   }
 }
-
-export default ContentContainer;

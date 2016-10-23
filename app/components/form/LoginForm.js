@@ -4,7 +4,7 @@ import RaisedButton from 'material-ui/RaisedButton';
 
 import './login-form.scss';
 
-class LoginForm extends Component {
+export default class LoginForm extends Component {
 
   render () {
     return (
@@ -37,5 +37,3 @@ class LoginForm extends Component {
      );
   }
 }
-
-export default LoginForm;

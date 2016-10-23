@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Toolbar, ToolbarGroup, ToolbarSeparator, ToolbarTitle} from 'material-ui/Toolbar';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class TaskHeader extends Component {
+export default class TaskHeader extends Component {
 
   render () {
     return (
@@ -18,5 +18,3 @@ class TaskHeader extends Component {
      );
   }
 }
-
-export default TaskHeader;

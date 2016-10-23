@@ -4,10 +4,10 @@ import axios from 'axios';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import LinearProgress from 'material-ui/LinearProgress';
 
-import LoginContainer from './Login.js';
-import ContentContainer from './Content.js';
+import LoginContainer from './Login';
+import ContentContainer from './Content';
 
-class MainContainer extends Component {
+export default class MainContainer extends Component {
 
   constructor (props) {
     super(props);
@@ -116,5 +116,3 @@ const styles = {
     display: 'none'
   }
 };
-
-export default MainContainer;

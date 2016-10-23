@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import LoginForm from '../components/form/LoginForm.js';
+import LoginForm from '../components/form/LoginForm';
 import AppBar from 'material-ui/AppBar';
 
-class LoginContainer extends Component {
+export default class LoginContainer extends Component {
 
   render () {
     return (
@@ -18,5 +18,3 @@ class LoginContainer extends Component {
      );
   }
 }
-
-export default LoginContainer;

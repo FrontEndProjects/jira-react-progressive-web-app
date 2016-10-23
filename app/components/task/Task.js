@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { Card, CardHeader, CardActions, CardText } from 'material-ui/Card';
+import { List, ListItem } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import RaisedButton from 'material-ui/RaisedButton';
 
-class Task extends Component {
+export default class Task extends Component {
 
   render () {
     let href = 'https://jira.nitro-digital.com/browse/' + this.props.link;
@@ -27,11 +28,13 @@ class Task extends Component {
         </CardActions>
         <CardText expandable={true} style={styles.cardText}>
           <Paper zDepth={1} style={styles.paper}>
-            Reporter: {this.props.reporter} <br />
-            Reporter e-mail: {this.props.reporterEmail} <br />
-            Created: {this.props.created} <br />
-            Updated: {this.props.updated} <br />
-            Project: {this.props.project}
+            <List>
+              <ListItem>Reporter: {this.props.reporter}</ListItem>
+              <ListItem>Reporter e-mail: {this.props.reporterEmail}</ListItem>
+              <ListItem>Created: {this.props.created}</ListItem>
+              <ListItem>Updated: {this.props.updated}</ListItem>
+              <ListItem>Project: {this.props.project}</ListItem>
+            </List>
           </Paper>
         </CardText>
       </Card>
@@ -54,5 +57,3 @@ const styles = {
     paddingBottom: 16
   }
 };
-
-export default Task;
